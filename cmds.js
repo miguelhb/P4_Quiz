@@ -67,8 +67,8 @@ exports.showCmd = (rl, id) => {
 */
 exports.addCmd = rl => {
   //log('Añadir un nuevo quiz','red');
-  rl.question(colorize('Introduzca una pregunta:','red'),question =>{
-  	rl.question(colorize('Introduzca una respuesta:','red'),answer =>{
+  rl.question(colorize('Introduzca una pregunta: ','red'),question =>{
+  	rl.question(colorize('Introduzca una respuesta ','red'),answer =>{
 
   		model.add(question,answer);
   		log(`${colorize('Se ha añadido','magenta')}: ${question } ${colorize('=>','magenta')} ${answer}`);
@@ -119,7 +119,7 @@ exports.editCmd = (rl, id) => {
   			
   			process.stdout.isTTY && setTimeout(() =>{rl.write(quiz.answer)},0);
 
-  			rl.question(colorize('Introduzca una respuesta', 'red'), answer=>{
+  			rl.question(colorize('Introduzca una respuesta ', 'red'), answer=>{
   				model.update(id,question,answer);
   				log(`Se ha cambiado el quiz ${colorize(id,'magenta')} por: ${question} ${colorize('=>','magenta')} ${answer}`);
   				rl.prompt();
@@ -154,11 +154,11 @@ exports.testCmd = (rl, id) => {
 			let cmd1 = args1[0].toLowerCase().trim();
 			
 			if(cmd === cmd1){
-				log('Su respuesta es:');
+				log('Su respuesta es correcta.');
 				biglog('CORRECTO','green');
 				rl.prompt();
 			}else{
-				log('Su respuesta es:');
+				log('Su respuesta es incorrecta.');
 				biglog('INCORRECTO','red');
 				rl.prompt();
 			};
@@ -209,11 +209,11 @@ exports.playCmd = rl => {
 		let cmd1 = args1[0].toLowerCase().trim();
 		if(cmd === cmd1){
         score++;
-  			log('CORRECTO - LLeva ' + score + ' aciertos');
+  			log('CORRECTO - LLeva ' + score + ' aciertos.');
    			playOne();	
   		}else{
   			log('INCORRECTO.');
-        log('Fin del examen. Aciertos:');
+        log('Fin del juego. Aciertos:');
   			biglog(score,'magenta');
         rl.prompt();
   		}
