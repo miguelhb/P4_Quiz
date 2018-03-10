@@ -113,7 +113,7 @@ exports.showCmd = (rl, id) => {
 */
 const makeQuestion = (rl,text) => {
   return new Sequelize.Promise ((resolve, reject) =>{
-    rl.question(colorize(text,'red'), answer => {
+    rl.question(colorize(text + '? ','red'), answer => {
       resolve(answer.trim());
       //trim() quita espacios en blanco por delante y por detras
     });
@@ -288,12 +288,14 @@ exports.playCmd = rl => {
   })
     
   let auxiliar= toBePlayed.length
+  
   const playOne = () => {
-  //auxiliar--;
   return Promise.resolve()
   .then(()=>{
     if(toBePlayed.length<=0){
-      console.log("SE ACABO");
+      console.log("No hay nada más que preguntar");
+      console.log('Fin del juego. Aciertos:' + score);
+      console.log(score,'magenta');
       return;
     }
     let id = Math.floor(Math.random() * auxiliar);
@@ -308,13 +310,13 @@ exports.playCmd = rl => {
       let a2s = a2[0].toLowerCase().trim();
       if(a1s === a2s){
         score++;
-        log('CORRECTO - LLeva ' + score + ' aciertos.');
+        console.log('CORRECTO - LLeva ' + score + ' aciertos.');
         playOne();
       }else{
-        log('INCORRECTO.');
-        log('Fin del juego. Aciertos:');
-        biglog(score,'magenta');
-        rl.prompt();
+        console.log('INCORRECTO.');
+        console.log('Fin del juego. Aciertos:' + score);
+        console.log(score,'magenta');
+        //rl.prompt();
     };  
     })
   })
@@ -347,9 +349,11 @@ exports.creditsCmd = rl => {
   //.then((){
 
   //})
+  return new Sequelize.Promise ((resolve, reject) =>{
   log('Autor de la práctica:');
   log('Miguel Hernández','green');
   rl.prompt();
+  });
 };
 /**
 * Terminar el programa.
