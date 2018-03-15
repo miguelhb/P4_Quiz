@@ -295,7 +295,7 @@ exports.playCmd = rl => {
     if(toBePlayed.length<=0){
       console.log("No hay nada más que preguntar");
       console.log('Fin del juego. Aciertos:' + score);
-      console.log(score,'magenta');
+      log(score,'magenta');
       return;
     }
     let id = Math.floor(Math.random() * auxiliar);
@@ -311,11 +311,10 @@ exports.playCmd = rl => {
       if(a1s === a2s){
         score++;
         console.log('CORRECTO - LLeva ' + score + ' aciertos.');
-        playOne();
+        return playOne();
       }else{
         console.log('INCORRECTO.');
         console.log('Fin del juego. Aciertos:' + score);
-        console.log(score,'magenta');
         //rl.prompt();
     };  
     })
