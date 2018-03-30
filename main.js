@@ -98,12 +98,6 @@ net.createServer(socket =>{
   });
 
 
-});
-net.listen(3030);
-//Mensaje inicial 
-//console.log(
-//  chalk.green.bold(
-//    figlet.textSync('CORE Quiz', {horizontalLayout: 'full'})
-//  )
-//);
+})
+.listen(3030);
 
